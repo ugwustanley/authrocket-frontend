@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { Link } from 'react-router-dom'
+import { Link , useHistory} from 'react-router-dom'
 import Authrocket from 'useauthrocket'
 import '../css/index.css'
 
@@ -9,6 +9,7 @@ export default function Register() {
     const [fullName, setFullName] = useState()
     const [btn , setBtn] = useState("Register")
     const [err , setErr] = useState()
+    const history = useHistory()
 
     async function handleRegister(e){
 
@@ -35,6 +36,7 @@ export default function Register() {
             setBtn("Register")
             console.log(user)
             window.location.href = '/login'
+          
         } 
       } catch (err) {
         console.log(err, err.type)

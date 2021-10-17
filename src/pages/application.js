@@ -1,7 +1,6 @@
 import React, {useState} from 'react'
-import {Link} from 'react-router-dom'
-import {getKey} from '../hooks/index'
-import { ArrowClockwise } from 'phosphor-react'
+import {Link, useHistory} from 'react-router-dom'
+
 
 import '../css/index.css'
 import axios from 'axios'
@@ -13,6 +12,7 @@ export default  function Home() {
     const [err , setErr] = useState()
     const [btn , setBtn] = useState("Generate")
     const [apiKey , setApiKey] = useState(localStorage.getItem('apiKey') || null)
+    const history = useHistory()
 
     async function generateApiKey(e){
         console.log("ehhh")
@@ -48,9 +48,11 @@ export default  function Home() {
     }
 
     function signout(){
+      
         localStorage.removeItem('token')
         localStorage.removeItem('apiKey')
         localStorage.removeItem('user')
+        
     }
 
     return (

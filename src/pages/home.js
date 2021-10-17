@@ -28,12 +28,13 @@ export default  function Home() {
                        'Authorization': token
                     }})
                 console.log(key.data.apiKey, "test2")
+                localStorage.getItem('apiKey', key.data.apiKey)
                 setKey(key.data.apiKey)
             }
             
             if(key){ 
                 //3276K0P-PAXM4Y9-N87ZKKJ-DYTANVN
-                 console.log(data.apiKey)
+                 console.log(key , "there is a key")
                 const users =  await axios.get(`https://authrocket.herokuapp.com/v1/users/getusers/${key}`,{
                     headers: {
                        'Content-Type': 'application/json',
@@ -59,7 +60,7 @@ export default  function Home() {
     
     useEffect(() => {
         getUsers()
-    }, [])
+    }, [key])
     useEffect(() => {
        console.log(users.length >= 1)
     }, [users])

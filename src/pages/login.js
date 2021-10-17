@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { Link } from 'react-router-dom'
+import { Link , useHistory } from 'react-router-dom'
 import Authrocket from 'useauthrocket'
 import '../css/index.css'
 
@@ -8,6 +8,7 @@ export default function Login() {
     const [password, setPassword] = useState()
     const [btn , setBtn] = useState("Login")
     const [err , setErr] = useState()
+    const history = useHistory()
 
     async function handleLogin(e){
 
@@ -34,9 +35,9 @@ export default function Login() {
             setBtn("Login")
             console.log(user)
             localStorage.setItem('user', JSON.stringify(user))
-            setTimeout(() => {
-                window.location.href = '/home'
-            }, 1000);
+            
+               window.location.href = '/home'
+            
         } 
       } catch (err) {
         console.log(err, err.type)

@@ -6,7 +6,7 @@
 /* #272b34 */
 /*  #011627*/
 .login{
-    background:red;
+    background:#011627 ;
     padding:0;
     margin:0;
     overflow:hidden;
@@ -58,7 +58,7 @@
 
 .auth-right{
     height:100vh;
-    background-color:pink;
+    background-color:#011627 ;
     margin:0;
     background-image:url('../images/ar-8.jpg');
     background-size:cover;
@@ -67,7 +67,7 @@
 
 .dash-right{
     height:100vh;
-    background-color:pink;
+    background-color:#011627 ;
     margin:0;
     background-image:url('../images/ar-5.jpg');
     background-size:cover;
