@@ -3,13 +3,16 @@ import { Link , useHistory } from 'react-router-dom'
 import Authrocket from 'useauthrocket'
 import '../css/index.css'
 
+import dotenv from 'dotenv'
+dotenv.config({ path: __dirname+'/.env' })
+
 export default function Login() {
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
     const [btn , setBtn] = useState("Login")
     const [err , setErr] = useState()
     const history = useHistory()
-
+    // console.log(process.env.REACT_APP_APPNAME, process.env.REACT_APP_APIKEY)
     async function handleLogin(e){
 
       e.preventDefault()
@@ -25,19 +28,22 @@ export default function Login() {
     }
     setBtn("Please wait...")
       const app = Authrocket.initializeApp({
-          apiKey:'Z8NCDZW-D0Y4SZ0-MC2KRWD-5V9P7TG',
-          appName:'stan' 
+          apiKey: process.env.REACT_APP_APIKEY,
+          appName: process.env.REACT_APP_APPNAME
       })
-
+      
       try {
         const user = await app.login(email, password)
         if(user){
             setBtn("Login")
             console.log(user)
             localStorage.setItem('user', JSON.stringify(user))
-            
+          
                window.location.href = '/home'
-            
+              //  setTimeout(async function(){console.log(await app.isEmailVerified(user.uuid)) }, 5000);
+              //  setTimeout(async function(){console.log(await app.isUserSignedIn(user.uuid)) }, 6000);
+              //  setTimeout(async function(){console.log(await app.getUser(user.uuid)) }, 6000);
+              //  setTimeout(function(){app.signout()}, 9000);
         } 
       } catch (err) {
         console.log(err, err.type)
@@ -67,7 +73,7 @@ export default function Login() {
                             <input onChange={(e) => setPassword(e.target.value)} type="password" className="password" name="password" placeholder="password" />
                             <button onClick={(e) => handleLogin(e)} type="submit" className="submit auth-btn">{btn}</button>
 
-                            <p className="text-white mt-1 text-left">Already have an account with us? <Link to="/register">Register</Link></p>
+                            <p className="text-white mt-1 text-left">Don't yet have an account with us? <Link to="/register">Register</Link></p>
                        </div>
                    </form>
                 </div>

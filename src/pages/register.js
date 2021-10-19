@@ -1,7 +1,9 @@
 import React, {useState} from 'react'
 import { Link , useHistory} from 'react-router-dom'
+import dotenv from 'dotenv'
 import Authrocket from 'useauthrocket'
 import '../css/index.css'
+dotenv.config()
 
 export default function Register() {
     const [email, setEmail] = useState()
@@ -10,7 +12,7 @@ export default function Register() {
     const [btn , setBtn] = useState("Register")
     const [err , setErr] = useState()
     const history = useHistory()
-
+    console.log(process.env.APIKEY, "heky")
     async function handleRegister(e){
 
       e.preventDefault()
@@ -26,8 +28,8 @@ export default function Register() {
     }
     setBtn("Please wait...")
       const app = Authrocket.initializeApp({
-          apiKey:'Z8NCDZW-D0Y4SZ0-MC2KRWD-5V9P7TG',
-          appName:'stan' 
+          apiKey: process.env.REACT_APP_APIKEY,
+          appName: process.env.REACT_APP_APPNAME 
       })
 
       try {
